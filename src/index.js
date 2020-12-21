@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
-import { NavBar } from "./components/navbar";
-
 import { AppPage } from "./App";
+
+import { NavBar } from "./components";
 import { TOSPage, PrivacyPage } from "./pages";
 
 import "./App.css";

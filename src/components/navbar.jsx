@@ -11,9 +11,9 @@ export function NavBar() {
           <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
           </Nav>
-          <Dropdown navbar={true} focusFirstItemOnShow={false}>
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
-              Dropdown
+          <Dropdown focusFirstItemOnShow={false}>
+            <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+              More
             </Dropdown.Toggle>
             <Dropdown.Menu alignRight={true}>
               <Dropdown.Item active={false} href="/">

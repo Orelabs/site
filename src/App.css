@@ -3,13 +3,13 @@
 
 body {
   background: #1a202c !important;
-  font-family: Poppins, sans-serif;
 }
 
 .app {
   color: white;
   text-align: center;
   margin-top: 100px;
+  font-family: Poppins, sans-serif;
 }
 
 .font-poppins {
