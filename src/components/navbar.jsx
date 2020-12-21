@@ -1,9 +1,10 @@
 import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap";
+import "../css/navbar.css";
 
 export function NavBar() {
   return (
-    <>
+    <div className="navbarContainer">
       <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand href="#home">Website</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,6 +30,6 @@ export function NavBar() {
           </Dropdown>
         </Navbar.Collapse>
       </Navbar>
-    </>
+    </div>
   );
 }
