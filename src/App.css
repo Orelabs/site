@@ -19,3 +19,31 @@ body {
 .font-montserrat {
   font-family: Montserrat, sans-serif !important;
 }
+
+.js-link {
+  color: #00eeee;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.js-link:hover {
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: grey;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}

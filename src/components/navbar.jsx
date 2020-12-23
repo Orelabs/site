@@ -6,13 +6,13 @@ export function NavBar() {
   return (
     <div className="navbarContainer">
       <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand href="#home">Website</Navbar.Brand>
+        <Navbar.Brand href="/">Orelabs</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/thirdparties">Third-Parties</Nav.Link>
           </Nav>
-          <Dropdown focusFirstItemOnShow={false}>
+          <Dropdown focusFirstItemOnShow={false} id="navbarDropdown">
             <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
               More
             </Dropdown.Toggle>
@@ -20,6 +20,7 @@ export function NavBar() {
               <Dropdown.Item active={false} href="/">
                 Home
               </Dropdown.Item>
+              <Dropdown.Divider />
               <Dropdown.Item active={false} href="/tos">
                 Terms of Service
               </Dropdown.Item>

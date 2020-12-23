@@ -5,12 +5,31 @@
   "main": "src/index.js",
   "type": "module",
   "dependencies": {
+    "@babel/runtime": "7.12.5",
+    "@restart/context": "2.1.4",
+    "@restart/hooks": "0.3.25",
+    "@types/classnames": "2.2.11",
+    "@types/invariant": "2.2.34",
+    "@types/prop-types": "15.7.3",
+    "@types/react": "17.0.0",
+    "@types/react-transition-group": "4.4.0",
+    "@types/warning": "3.0.0",
     "bootstrap": "4.5.3",
+    "classnames": "2.2.6",
+    "dom-helpers": "5.2.0",
+    "invariant": "2.2.4",
+    "jquery": "3.5.1",
+    "popper.js": "1.16.1",
+    "prop-types": "15.7.2",
     "react": "17.0.0",
     "react-bootstrap": "1.4.0",
     "react-dom": "17.0.0",
+    "react-overlays": "0.9.3",
     "react-router-dom": "5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-transition-group": "4.4.1",
+    "uncontrollable": "7.1.1",
+    "warning": "4.0.3"
   },
   "devDependencies": {
     "typescript": "3.8.3"
@@ -21,6 +40,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "keywords": []
 }

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
+.nav-link {
+  margin: 0 10px 0 10px;
+  transition: 0.3s linear;
+}
+
 .navbarContainer {
   font-family: Poppins, sans-serif !important;
 }

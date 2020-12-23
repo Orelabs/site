@@ -1,1 +1,1 @@
-export { TOSPage, PrivacyPage, LandingPage } from "./static";
+export { TOSPage, PrivacyPage, LandingPage, ThirdPartiesPage } from "./static";

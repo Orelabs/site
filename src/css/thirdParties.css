@@ -1,0 +1,40 @@
+.thirdPartyCard {
+  margin: 0 50px 0 50px;
+  padding: 25px;
+
+  min-height: 14rem;
+  min-width: 10rem;
+  max-height: 40rem;
+  max-width: 18rem;
+}
+
+.thirdPartyCardImg {
+  border-radius: 50%;
+}
+
+.thirdPartyCardDescription {
+  max-height: 275px;
+  padding: 15px;
+  border: solid 0.5px #1c1c1c;
+  border-radius: 10px;
+  text-align: justify center;
+}
+
+.thirdPartyCardDescriptionOverflow {
+  overflow: scroll;
+}
+
+.thirdPartyCardLinksTitle {
+  font-size: 18px;
+  color: white;
+  margin-top: 10px;
+}
+
+.thirdPartyCardLinksTitle img {
+  margin-right: 10px;
+}
+
+.linkDivider {
+  color: black;
+  margin: 0 5px 0 5px;
+}
