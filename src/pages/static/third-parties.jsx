@@ -13,6 +13,7 @@ export class ThirdPartiesPage extends Component {
           "https://cdn.discordapp.com/icons/750159162956054570/d15437f687895af53d967e0ebc90115b.jpg",
         id: "chillChamber",
         description: "A chill Discord server for anyone!",
+        defaultLink: "https://discord.com/invite/VVDXSsU",
         links: [
           {
             name: "Invite Link",
@@ -22,7 +23,7 @@ export class ThirdPartiesPage extends Component {
       },
       {
         title: "Hoppi Discord Bot",
-        image: "https://hoppibot.github.io/hoppi/images/logorounded.png",
+        image: "https://hoppibot.github.io/hoppi/images/logo.jpg",
         id: "hoppiSupport",
         description: (
           <>
@@ -31,17 +32,19 @@ export class ThirdPartiesPage extends Component {
             server.
           </>
         ),
+        defaultLink:
+          "https://discord.com/oauth2/authorize?client_id=729803338228695060&permissions=2079849719&scope=bot",
         links: [
+          {
+            id: "inviteLink",
+            name: "Add Bot",
+            link:
+              "https://discord.com/oauth2/authorize?client_id=729803338228695060&permissions=2079849719&scope=bot"
+          },
           {
             id: "website",
             name: "Website",
             link: "https://hoppi.glitch.me"
-          },
-          {
-            id: "inviteLink",
-            name: "Invite Link",
-            link:
-              "https://discord.com/oauth2/authorize?client_id=729803338228695060&permissions=2079849719&scope=bot"
           },
           {
             id: "supportServer",
@@ -54,8 +57,6 @@ export class ThirdPartiesPage extends Component {
   }
 
   render() {
-    var maxDescriptionLen = 160;
-
     const mapLinks = (links) => {
       let lastLink = links[links.length - 1].link;
 
@@ -84,19 +85,17 @@ export class ThirdPartiesPage extends Component {
           {this.thirdParties.map((party) => {
             return (
               <Card key={party.id} bg="dark" className="thirdPartyCard">
-                <Card.Img src={party.image} className="thirdPartyCardImg" />
+                <Card.Img
+                  src={party.image}
+                  className="thirdPartyCardImg"
+                  onClick={() => window.open(`${party.image}`, "_blank")}
+                />
                 <Card.Body>
                   <Card.Title className="thirdPartyCardTitle">
                     {party.title}
                   </Card.Title>
                   <Card.Text style={{ color: "lightgrey" }}>
-                    <div
-                      className={`thirdPartyCardDescription${
-                        party.description.length >= maxDescriptionLen
-                          ? " thirdPartyCardDescriptionOverflow"
-                          : ""
-                      }`}
-                    >
+                    <div className="thirdPartyCardDescription">
                       {party.description}
                     </div>
                     <div className="thirdPartyCardLinksTitle">

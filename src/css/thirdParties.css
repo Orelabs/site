@@ -1,26 +1,47 @@
 .thirdPartyCard {
-  margin: 0 50px 0 50px;
+  margin: 0 150px 0 50px;
   padding: 25px;
 
   min-height: 14rem;
   min-width: 10rem;
   max-height: 40rem;
   max-width: 18rem;
+
+  transition: 0.3s linear;
+  box-shadow: 0 0 20px 0.25px #00ffff;
+}
+
+.thirdPartyCard:hover {
+  transform: scale(1.05);
+  animation: thirdPartyCardGlow 1s infinite alternate ease-out;
+}
+
+@keyframes thirdPartyCardGlow {
+  from {
+    box-shadow: 0 0 20px 1px #00ffff;
+  }
+  to {
+    box-shadow: 0 0 20px 1px #04b5b4;
+  }
 }
 
 .thirdPartyCardImg {
   border-radius: 50%;
+  cursor: pointer;
+  border: solid 1px white;
+  transition: 0.2s linear;
+}
+
+.thirdPartyCardImg:hover {
+  border-radius: 35%;
 }
 
 .thirdPartyCardDescription {
-  max-height: 275px;
-  padding: 15px;
+  max-height: 230px;
+  padding: 15px 15px 0 15px;
   border: solid 0.5px #1c1c1c;
   border-radius: 10px;
   text-align: justify center;
-}
-
-.thirdPartyCardDescriptionOverflow {
   overflow: scroll;
 }
 
