@@ -30,6 +30,39 @@ body {
   text-decoration: underline;
 }
 
+.dropdown-item {
+  transition: 0.2s linear !important;
+}
+
+.badge {
+  font-weight: 500 !important;
+}
+
+.tooltip-inner {
+  font-family: Poppins, sans-serif !important;
+  font-size: 13px !important;
+  color: lightgrey;
+  user-select: none;
+}
+
+.Toastify__toast-body {
+  font-family: Poppins, sans-serif !important;
+}
+
+.Toastify__close-button {
+  border: none !important;
+  outline: none !important;
+}
+
+button.close {
+  border: none !important;
+  outline: none !important;
+}
+
+::placeholder {
+  font-family: Poppins, sans-serif !important;
+}
+
 ::-webkit-scrollbar {
   width: 15px;
 }

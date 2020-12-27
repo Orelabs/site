@@ -1,4 +1,4 @@
-.thirdPartyCard {
+.staffCard {
   margin: 0 150px 0 50px;
   padding: 25px;
 
@@ -11,12 +11,12 @@
   box-shadow: 0 0 20px 0.25px #00ffff;
 }
 
-.thirdPartyCard:hover {
+.staffCard:hover {
   transform: scale(1.05);
-  animation: thirdPartyCardGlow 1s infinite alternate ease-in-out;
+  animation: staffCardGlow 1s infinite alternate ease-in-out;
 }
 
-@keyframes thirdPartyCardGlow {
+@keyframes staffCardGlow {
   from {
     box-shadow: 0 0 20px 1px #00ffff;
   }
@@ -25,33 +25,28 @@
   }
 }
 
-.thirdPartyCardImg {
-  border-radius: 50%;
+.staffCardImg {
   cursor: pointer;
   border: solid 1px white;
   transition: 0.2s linear;
 }
 
-.thirdPartyCardImg:hover {
-  border-radius: 35%;
-}
-
-.thirdPartyCardDescription {
+.staffCardDescription {
   max-height: 230px;
-  padding: 15px 15px 0 15px;
+  padding: 15px 0 0 15px;
   border: solid 0.5px #1c1c1c;
   border-radius: 10px;
-  text-align: justify center;
+  text-align: center justify;
   overflow: scroll;
 }
 
-.thirdPartyCardLinksTitle {
+.staffCardLinksTitle {
   font-size: 18px;
   color: white;
   margin-top: 10px;
 }
 
-.thirdPartyCardLinksTitleIcon {
+.staffCardLinksTitleIcon {
   color: black;
   margin-right: 10px;
 }

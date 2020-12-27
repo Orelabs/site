@@ -8,3 +8,27 @@
 .navbarContainer {
   font-family: Poppins, sans-serif !important;
 }
+
+.mascotsDropdown {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.mascotImg {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.dropdown-item svg {
+  margin-right: 5px;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CardGroup, Card } from "react-bootstrap";
+import { FaLink } from "react-icons/fa";
 import "../../css/thirdParties.css";
 
 export class ThirdPartiesPage extends Component {
@@ -13,43 +14,10 @@ export class ThirdPartiesPage extends Component {
           "https://cdn.discordapp.com/icons/750159162956054570/d15437f687895af53d967e0ebc90115b.jpg",
         id: "chillChamber",
         description: "A chill Discord server for anyone!",
-        defaultLink: "https://discord.com/invite/VVDXSsU",
         links: [
           {
             name: "Invite Link",
             link: "https://discord.com/invite/VVDXSsU"
-          }
-        ]
-      },
-      {
-        title: "Hoppi Discord Bot",
-        image: "https://hoppibot.github.io/hoppi/images/logo.jpg",
-        id: "hoppiSupport",
-        description: (
-          <>
-            Hoppi is an awesome bot for any server. Click the links below to
-            invite Hoppi, visit Hoppi's website, <em>and</em> join the support
-            server.
-          </>
-        ),
-        defaultLink:
-          "https://discord.com/oauth2/authorize?client_id=729803338228695060&permissions=2079849719&scope=bot",
-        links: [
-          {
-            id: "inviteLink",
-            name: "Add Bot",
-            link:
-              "https://discord.com/oauth2/authorize?client_id=729803338228695060&permissions=2079849719&scope=bot"
-          },
-          {
-            id: "website",
-            name: "Website",
-            link: "https://hoppi.glitch.me"
-          },
-          {
-            id: "supportServer",
-            name: "Support Server",
-            link: "https://discord.com/invite/bVJtZpZ"
           }
         ]
       }
@@ -62,19 +30,19 @@ export class ThirdPartiesPage extends Component {
 
       return links.map((partyLink) => {
         return (
-          <>
+          <span key={`${partyLink.link}`}>
             <span
               className="js-link"
               style={{ fontSize: "14px", marginTop: "10px" }}
               onClick={() => window.open(`${partyLink.link}`, "_blank")}
-              key={`${partyLink.id}`}
+              key={`${partyLink.link}`}
             >
               {partyLink.name}
             </span>
             <span className="linkDivider">
               {partyLink.link === lastLink ? "" : " | "}
             </span>
-          </>
+          </span>
         );
       });
     };
@@ -99,13 +67,10 @@ export class ThirdPartiesPage extends Component {
                       {party.description}
                     </div>
                     <div className="thirdPartyCardLinksTitle">
-                      <img
-                        src="https://img.icons8.com/android/24/000000/link.png"
-                        alt=""
-                      />
+                      <FaLink className="thirdPartyCardLinksTitleIcon" />
                       Links
                     </div>
-                    {mapLinks(party.links)}
+                    <div>{mapLinks(party.links)}</div>
                   </Card.Text>
                 </Card.Body>
               </Card>

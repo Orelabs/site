@@ -1,4 +1,4 @@
-.thirdPartyCard {
+.productCard {
   margin: 0 150px 0 50px;
   padding: 25px;
 
@@ -11,12 +11,12 @@
   box-shadow: 0 0 20px 0.25px #00ffff;
 }
 
-.thirdPartyCard:hover {
+.productCard:hover {
   transform: scale(1.05);
-  animation: thirdPartyCardGlow 1s infinite alternate ease-in-out;
+  animation: productCardGlow 1s infinite alternate ease-in-out;
 }
 
-@keyframes thirdPartyCardGlow {
+@keyframes productCardGlow {
   from {
     box-shadow: 0 0 20px 1px #00ffff;
   }
@@ -25,18 +25,18 @@
   }
 }
 
-.thirdPartyCardImg {
-  border-radius: 50%;
+.productCardImg {
+  border-radius: 50% !important;
   cursor: pointer;
   border: solid 1px white;
   transition: 0.2s linear;
 }
 
-.thirdPartyCardImg:hover {
-  border-radius: 35%;
+.productCardImg:hover {
+  border-radius: 30% !important;
 }
 
-.thirdPartyCardDescription {
+.productCardDescription {
   max-height: 230px;
   padding: 15px 15px 0 15px;
   border: solid 0.5px #1c1c1c;
@@ -45,13 +45,13 @@
   overflow: scroll;
 }
 
-.thirdPartyCardLinksTitle {
+.productCardLinksTitle {
   font-size: 18px;
   color: white;
   margin-top: 10px;
 }
 
-.thirdPartyCardLinksTitleIcon {
+.productCardLinksTitleIcon {
   color: black;
   margin-right: 10px;
 }
