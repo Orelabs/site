@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous");
+
+.FavArt {
+  display: block;
+  margin: 0 auto;
+  margin-left: 48%;
+  margin-top: 100px;
+  font-family: Righteous, sans-serif;
+}
+
+.FavArt h4 {
+  margin-bottom: 40px;
+}
+
+hr {
+  background-color: lightgrey;
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.FavArt img {
+  height: 620px;
+  box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
+  border-radius: 10px;
+  height: 620px;
+  width: auto;
+  transition: 0.1s linear;
+  margin-bottom: 50px;
+}
+
+.FavArt img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white;
+}

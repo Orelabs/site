@@ -1,17 +1,20 @@
 import React, { Component, useState } from "react";
 import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import $ from "jquery";
+
 import { FaTrash, FaPlusCircle } from "react-icons/fa";
 import { MdSystemUpdateAlt } from "react-icons/md";
 import "../../css/oreopics.css";
 
 const baseURL = "https://orelabs-api.herokuapp.com";
 
-export class OreoPicsPage extends Component {
+export class OreopicsPage extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = { oreopics: [], auth: "", admin: false };
+    this.state = { oreopics: [], authCode: "", authorized: false };
   }
 
   async componentDidMount() {
@@ -19,36 +22,40 @@ export class OreoPicsPage extends Component {
       .then((oreopics) => oreopics.json())
       .then((oreopics) => {
         fetch(`${baseURL}/oreopics/auth`, { method: "GET" })
-          .then((auth) => auth.text())
-          .then((auth) => {
+          .then((authCode) => authCode.text())
+          .then((authCode) => {
             this.setState({
               oreopics,
-              auth,
-              admin: this.state.admin
+              authCode,
+              authorized: this.state.authorized
             });
           });
       });
   }
 
   handleAuthCodeSubmit = () => {
-    let val = document.getElementById("authCodeInput").value;
+    let val = $("#authCodeInput").val().trim();
 
-    if (typeof val === "string" && val.length > 0 && val === this.state.auth) {
+    if (
+      typeof val === "string" &&
+      val.length > 0 &&
+      val === this.state.authCode
+    ) {
       toast.success(
         <>
           <h3>Authorized</h3>
           <div>
-            Successful authorization code! You can now add more oreo pictures.
+            Successful authorization code! You can now add more Oreo pictures.
           </div>
         </>
       );
 
-      let { oreopics, auth } = this.state;
+      let { oreopics, authCode } = this.state;
 
       this.setState({
         oreopics,
-        auth,
-        admin: true
+        authCode,
+        authorized: true
       });
     } else {
       toast.error(
@@ -63,18 +70,30 @@ export class OreoPicsPage extends Component {
   render() {
     return (
       <>
+        <img
+          src="https://cdn.discordapp.com/attachments/723589296681910322/793868998948683796/6f1c9c784cbad903b4c7fb84514987c9.png"
+          alt=""
+        />
         <div style={{ display: "inline-block" }}>
           {typeof this.state.oreopics === "object" &&
           this.state.oreopics.length > 0 ? (
             this.state.oreopics.map((oreopic) => {
               return (
                 <div className="oreopicContainer" key={`${oreopic.link}`}>
-                  <img
-                    className="oreopic"
-                    src={`${oreopic.link}`}
-                    alt=""
-                    onClick={() => window.open(`${oreopic.link}`, "_blank")}
-                  />
+                  <CopyToClipboard text={`${oreopic.link}`}>
+                    <img
+                      className="oreopic"
+                      src={`${oreopic.link}`}
+                      alt=""
+                      onClick={() => {
+                        toast.success(
+                          <>
+                            <h3>Link Copied</h3>Image link copied to clipboard!
+                          </>
+                        );
+                      }}
+                    />
+                  </CopyToClipboard>
                 </div>
               );
             })
@@ -95,17 +114,20 @@ export class OreoPicsPage extends Component {
 }
 
 function OreopicsInput(props) {
-  const { admin, auth, oreopics } = props.state;
+  var { authorized, authCode, oreopics } = props.state;
 
   const [show, setShow] = useState(false);
+
+  // FIX LATER //
+  authorized = true;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleNewOreo = () => {
-    if (!admin) return;
+    if (!authorized) return;
 
-    let inputVal = document.getElementById("oreoInputAdd").value.trim();
+    let inputVal = $("#oreoInputAdd").val().trim();
 
     if (
       (inputVal.startsWith("https://") || inputVal.startsWith("http://")) &&
@@ -114,16 +136,18 @@ function OreopicsInput(props) {
       fetch(`${baseURL}/oreopics`, {
         method: "POST",
         headers: {
-          Authentication: auth,
+          Authorization: authCode,
           "Content-Type": "application/json",
           Accept: "application/json"
         },
         body: JSON.stringify({ link: inputVal })
-      }).then((res) => res.json());
+      });
+      $("#oreoInputAdd").val("");
       toast.success(
         <>
           <h3>Image Added</h3>
-          Image successfully added! Refresh to view.
+          Image successfully added! If it isn't appearing, it's because you
+          don't have authorization.
         </>
       );
     } else {
@@ -138,9 +162,9 @@ function OreopicsInput(props) {
   };
 
   const handleDeleteOreo = () => {
-    if (!admin) return;
+    if (!authorized) return;
 
-    let inputVal = document.getElementById("oreoInputDelete").value.trim();
+    let inputVal = $("#oreoInputDelete").val().trim();
 
     if (
       (inputVal.startsWith("https://") || inputVal.startsWith("http://")) &&
@@ -149,40 +173,36 @@ function OreopicsInput(props) {
       if (!oreopics.find((pic) => pic.link === inputVal))
         return toast.error(
           <>
-            <h3>Invalid Link</h3>That image link doesn't exist.
+            <h3>Invalid Link</h3>
+            That image link doesn't exist.
           </>
         );
 
       fetch(`${baseURL}/oreopics`, {
         method: "DELETE",
         headers: {
-          Authentication: auth,
+          Authorization: authCode,
           "Content-Type": "application/json",
           Accept: "application/json"
         },
         body: JSON.stringify({ link: inputVal })
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
+      });
+      $("#oreoInputDelete").val("");
 
-          toast.info(
-            <>
-              <h3>Image Deleted</h3>
-              Image successfully deleted, refresh to view. If you deleted it on
-              accident, you can copy{" "}
-              <span
-                className="js-link"
-                onClick={() => {
-                  navigator.clipboard.writeText(inputVal);
-                }}
-              >
-                the link
-              </span>{" "}
-              to add it again.
-            </>
-          );
-        });
+      toast.info(
+        <>
+          <h3>Image Deleted</h3>
+          Image successfully deleted, refresh to view. If you deleted it on
+          accident, you can view{" "}
+          <span
+            className="js-link"
+            onClick={() => window.open(`${inputVal}`, "_blank")}
+          >
+            the link
+          </span>{" "}
+          here.
+        </>
+      );
     } else {
       toast.error(
         <>
@@ -194,9 +214,9 @@ function OreopicsInput(props) {
     }
   };
 
-  return admin ? (
+  return authorized ? (
     <>
-      <h3 style={{ marginBottom: "40px" }}>Add or Delete an Oreo</h3>
+      <h3 style={{ marginBottom: "40px" }}>Add or Delete Oreo Images</h3>
       <div className="oreoInputContainer">
         <InputGroup className="mb-3">
           <FormControl
@@ -212,7 +232,7 @@ function OreopicsInput(props) {
             onClick={handleNewOreo}
           >
             <FaPlusCircle />
-            Add an Oreo
+            Add Oreo
           </Button>
         </InputGroup>
       </div>
@@ -231,7 +251,7 @@ function OreopicsInput(props) {
             onClick={handleDeleteOreo}
           >
             <FaTrash />
-            Delete an Oreo
+            Delete Oreo
           </Button>
         </InputGroup>
       </div>
@@ -240,7 +260,7 @@ function OreopicsInput(props) {
     <>
       <Button variant="warning" onClick={handleShow}>
         <MdSystemUpdateAlt />
-        Add or delete an Oreo
+        Add or delete Oreo images
       </Button>
 
       <Modal show={show} onHide={handleClose}>

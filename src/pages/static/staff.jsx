@@ -9,7 +9,7 @@ export class StaffPage extends Component {
     this.props = props;
     this.staff = [
       {
-        title: "p0tato#5991",
+        title: "p0tato",
         badges: [
           {
             id: "founder-p0tato",
@@ -23,7 +23,7 @@ export class StaffPage extends Component {
           }
         ],
         image:
-          "https://cdn.discordapp.com/avatars/509167169087733773/0255eff4b7a2ab131b89b4689864f3d5.jpg?size=512",
+          "https://cdn.discordapp.com/avatars/509167169087733773/2a0d1ff5e14d5fdf15208dccd799f8f8.jpg?size=512",
         id: "p0tato",
         description:
           "Founder, frontend and backend (fullstack) developer for Orelabs.",
@@ -31,12 +31,12 @@ export class StaffPage extends Component {
           {
             id: "discordServer",
             name: "Discord",
-            link: "https://discord.com/invite/VVDXSsU"
+            link: "https://discord.com/invite/pWXzvNZsS5"
           }
         ]
       },
       {
-        title: "bug#8632",
+        title: "bug",
         badges: [
           {
             id: "founder-bug",
@@ -50,14 +50,14 @@ export class StaffPage extends Component {
           }
         ],
         image:
-          "https://cdn.discordapp.com/avatars/716011961934151761/58bd71e22a418e225be33827ac80994a.jpg",
+          "https://cdn.discordapp.com/attachments/723589296681910322/792949629175857162/unnamed.gif",
         id: "bug",
         description: "Founder, designer, and frontend developer for Orelabs.",
         links: [
           {
             id: "discordServer",
             name: "Discord",
-            link: "https://discord.com/invite/VVDXSsU"
+            link: "https://discord.com/invite/pWXzvNZsS5"
           }
         ]
       }

@@ -3,6 +3,7 @@
 
 body {
   background: #1a202c !important;
+  scroll-behavior: smooth;
 }
 
 .app {
@@ -10,6 +11,8 @@ body {
   text-align: center;
   margin-top: 100px;
   font-family: Poppins, sans-serif;
+  align-items: center;
+  justify-content: center;
 }
 
 .font-poppins {
@@ -21,7 +24,7 @@ body {
 }
 
 .js-link {
-  color: #00eeee;
+  color: #00eeee !important;
   text-decoration: none;
   cursor: pointer;
 }
@@ -57,6 +60,16 @@ body {
 button.close {
   border: none !important;
   outline: none !important;
+}
+
+button svg,
+a svg {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+img {
+  user-select: none;
 }
 
 ::placeholder {

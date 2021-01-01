@@ -1,0 +1,55 @@
+.jsTutorialContainer p {
+  width: 50%;
+  margin: 50px 0 0 25%;
+}
+
+.jsTutorialContainer hr {
+  background-color: #4f4f4f;
+  width: 50%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.jsTutorialContainer code {
+  background-color: black;
+  padding: 5px;
+  margin: 0 5px 0 5px;
+  border-radius: 5px;
+}
+
+.jsTutorialContainer pre {
+  width: fit-content !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.jsTutorialContainer pre.code-verbose code {
+  padding: 20px;
+}
+
+.jsTutorialContainer pre {
+  width: 50%;
+  margin: 25px 0 25px 25%;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.jsTutorialContainer div.alert {
+  margin: 25px;
+}
+
+.jsTilt-example {
+  margin-top: 60px;
+  padding: 75px 0 75px 0;
+  background-color: black;
+  border-radius: 20px;
+  width: 50%;
+  margin-left: 25%;
+
+  transition: 0.2s linear;
+  box-shadow: 0 0 10px white, 0 0 20px white;
+}
+
+.jsTilt-example:hover {
+  box-shadow: 0 0 20px white, 0 0 40px white;
+}

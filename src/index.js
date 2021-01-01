@@ -9,15 +9,23 @@ import { FaHome } from "react-icons/fa";
 
 import { AppPage } from "./App";
 
-import { NavBar } from "./components";
+import { NavBar, CookiesNotice } from "./components";
 import {
   TOSPage,
   PrivacyPage,
   ThirdPartiesPage,
-  OreoPicsPage,
+  OreopicsPage,
   ProductsPage,
   StaffPage,
-  SupportServerRedirect
+  SupportServerRedirect,
+  SignupPage,
+  LoginPage,
+  ProfilePage,
+  ContactPage,
+  JavaScriptTutorialPage,
+  JavaScriptTutorialExamplePage,
+  HandDrawnArtPage,
+  DigitalArtPage
 } from "./pages";
 
 import "./App.css";
@@ -39,6 +47,11 @@ const PageNotFound = () => (
 
 const Routes = () => (
   <>
+    {/* Syntax highlighting for code examples */}
+    <link
+      rel="stylesheet"
+      href="https://highlightjs.org/static/demo/styles/railscasts.css"
+    />
     <NavBar />
     <div className="app">
       <ToastContainer
@@ -46,6 +59,7 @@ const Routes = () => (
         pauseOnFocusLoss={false}
         autoClose={4000}
       />
+      <CookiesNotice />
       <BrowserRouter>
         <Switch>
           {/* Routes */}
@@ -53,18 +67,34 @@ const Routes = () => (
           <Route exact path="/tos" component={TOSPage} />
           <Route exact path="/privacy" component={PrivacyPage} />
           <Route exact path="/third-parties" component={ThirdPartiesPage} />
-          <Route exact path="/oreopics" component={OreoPicsPage} />
           <Route exact path="/products" component={ProductsPage} />
           <Route exact path="/staff" component={StaffPage} />
-
+          <Route exact path="/contactus" component={ContactPage} />
+          {/* p0tato's Pages */}
+          <Route
+            exact
+            path="/tutorials/javascript"
+            component={JavaScriptTutorialPage}
+          />
+          <Route
+            exact
+            path="/tutorials/javascript/example"
+            component={JavaScriptTutorialExamplePage}
+          />
+          {/* bug's Pages */}
+          <Route exact path="/oreopics" component={OreopicsPage} />
+          <Route exact path="/hand-drawn-art" component={HandDrawnArtPage} />
+          <Route exact path="/digital-art" component={DigitalArtPage} />
+          {/* Account Management */}
+          <Route exact path="/signup" component={SignupPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/profile" component={ProfilePage} />S
           {/* Component Redirects */}
           <Route exact path="/support" component={SupportServerRedirect} />
-
           {/* Redirects */}
           <Redirect from="/termsofservice" to="/tos" />
           <Redirect from="/privacynotice" to="/privacy" />
           <Redirect from="/thirdparties" to="third-parties" />
-
           {/* Errors */}
           <Route path="*" component={PageNotFound} />
         </Switch>
