@@ -1,26 +1,46 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "react-toastify";
 
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { InputGroup, FormControl, Button, Spinner } from "react-bootstrap";
 import { FaUserPlus, FaSignInAlt } from "react-icons/fa";
 
 import "../../css/signup.css";
 const baseURL = "http://localhost:9001";
+const sitekey = "6Le6gh0aAAAAABxWI8dWTa79J9G_-ZdB519UKSwU";
 
 export class SignupPage extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = { authorizationCode: "" };
+    this.state = {
+      authorizationCode: "",
+      createAccountButton: (
+        <>
+          <FaUserPlus />
+          Create Account
+        </>
+      )
+    };
+    this.verified = false;
   }
+
+  handleCaptcha = () => {
+    this.verified = true;
+  };
 
   componentDidMount() {
     fetch(`${baseURL}/oreopics/auth`, {
       method: "GET"
     })
       .then((res) => res.text())
-      .then((res) => this.setState({ authorizationCode: res }));
+      .then((res) =>
+        this.setState({
+          authorizationCode: res,
+          createAccountButton: this.state.createAccountButton
+        })
+      );
 
     $.get("https://www.cloudflare.com/cdn-cgi/trace", function (data) {
       let params = new URLSearchParams(data.replace(/\n/g, "&"));
@@ -34,6 +54,7 @@ export class SignupPage extends Component {
     let username = $("#usernameInput").val();
     let email = $("#emailInput").val();
     let password = $("#passwordInput").val();
+    let confPassword = $("#confirmPasswordInput").val();
 
     if (!email) {
       toast.error('"Email" is a required field.');
@@ -43,6 +64,11 @@ export class SignupPage extends Component {
     if (!password) {
       toast.error('"Password" is a required field.');
       $("#passwordInput").focus();
+      return;
+    }
+    if (!confPassword) {
+      toast.error('"Confirm Password" is a required field.');
+      $("#confirmPasswordInput").focus();
       return;
     }
 
@@ -69,6 +95,10 @@ export class SignupPage extends Component {
       );
       elemID = "passwordInput";
     }
+    if (confPassword !== password) {
+      err = "Passwords do not match.";
+      elemID = "confirmPasswordInput";
+    }
     if (!email.includes(".")) {
       err = 'Email is missing a "."';
       elemID = "emailInput";
@@ -89,11 +119,25 @@ export class SignupPage extends Component {
       $(`#${elemID}`).focus();
       return toast.error(err);
     }
+    if (!this.verified) {
+      toast.error(
+        "Please complete the reCAPTCHA to prove that you aren't a bot."
+      );
+      return;
+    }
     if (!username || !username.length > 0) {
       username = email.length > 20 ? email.slice(0, 20 - email.length) : email;
     }
 
-    toast.warning("Creating your account...");
+    $("#createAccountButton").attr("disabled", true);
+    this.setState({
+      authorizationCode: this.state.authorizationCode,
+      createAccountButton: (
+        <>
+          <Spinner animation="border" variant="primary" />
+        </>
+      )
+    });
 
     fetch(`${baseURL}/accounts/create`, {
       method: "POST",
@@ -107,20 +151,36 @@ export class SignupPage extends Component {
         email,
         password
       })
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        toast.success("Your account was successfully created! Redirecting...");
+    }).then((res) => {
+      res
+        .json()
+        .then((json) => {
+          if (res.ok) {
+            toast.success(
+              "Your account was successfully created! Redirecting..."
+            );
 
-        setTimeout(() => {
-          window.location.href = "/profile?n=1";
-        }, 2500);
-      })
-      .catch(() => {
-        toast.error(
-          `We ran into an error while creating your account, please try again.`
+            window.localStorage.setItem("userID", json.userID);
+
+            setTimeout(() => {
+              window.location.href = "/profile";
+            }, 2500);
+          } else {
+            if (json.message) {
+              toast.error(json.message);
+            } else {
+              toast.error(
+                `We ran into an error while creating your account, please try again.`
+              );
+            }
+          }
+        })
+        .catch(() =>
+          toast.error(
+            "We ran into an error while creating your account, please try again."
+          )
         );
-      });
+    });
   };
 
   render() {
@@ -128,7 +188,7 @@ export class SignupPage extends Component {
       <>
         <div className="signupContainer">
           <h1>Sign Up</h1>
-          <p>Create an Orelabs account</p>
+          <p style={{ color: "white" }}>Create an Orelabs account</p>
           <label htmlFor="usernameInput" className="inputLabel">
             Username
             <span
@@ -172,12 +232,44 @@ export class SignupPage extends Component {
               aria-describedby="basic-addon2"
             />
           </InputGroup>
-          <div className="passwordRequirements">
+          <div className="requirements">
             Make sure your password is at least 8 characters long.
           </div>
-          <Button onClick={this.handleSubmit} variant="info">
-            <FaUserPlus />
-            Create Account
+          <label htmlFor="confirmPasswordInput" className="inputLabel">
+            Confirm Password
+            <span style={{ color: "#cc0000", userSelect: "none" }}> *</span>
+          </label>
+          <InputGroup className="signupInput lastInput">
+            <FormControl
+              placeholder="Confirm password"
+              type="password"
+              id="confirmPasswordInput"
+              aria-describedby="basic-addon2"
+            />
+          </InputGroup>
+          <div className="requirements">
+            Retype the password you created above.
+          </div>
+          <ReCAPTCHA
+            theme="dark"
+            sitekey={sitekey}
+            className="recaptcha"
+            onChange={this.handleCaptcha}
+          />
+          <div style={{ marginBottom: "10px" }}>
+            <br />
+          </div>
+          <Button
+            onClick={this.handleSubmit}
+            variant="success"
+            style={{
+              width: "65%",
+              height: "50px",
+              margin: "10px 0 30px 0"
+            }}
+            id="createAccountButton"
+          >
+            {this.state.createAccountButton}
           </Button>
           <br />
           <div style={{ marginTop: "40px" }}>

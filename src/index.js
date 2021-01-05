@@ -52,17 +52,21 @@ const Routes = () => (
       rel="stylesheet"
       href="https://highlightjs.org/static/demo/styles/railscasts.css"
     />
+    {/* Navbar */}
     <NavBar />
     <div className="app">
+      {/* Toasts */}
       <ToastContainer
         position="top-right"
         pauseOnFocusLoss={false}
         autoClose={4000}
       />
+      {/* Cookies Notice */}
       <CookiesNotice />
+      {/* Routes */}
       <BrowserRouter>
         <Switch>
-          {/* Routes */}
+          {/* Main Routes */}
           <Route exact path="/" component={AppPage} />
           <Route exact path="/tos" component={TOSPage} />
           <Route exact path="/privacy" component={PrivacyPage} />

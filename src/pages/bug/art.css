@@ -1,27 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous");
 
-.FavArt {
-  display: block;
-  margin: 0 auto;
-  margin-left: 48%;
-  margin-top: 100px;
-  font-family: Righteous, sans-serif;
-}
-
-.FavArt h4 {
-  margin-bottom: 40px;
-}
-
 hr {
   background-color: lightgrey;
   width: 70%;
   display: block;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
-.FavArt img {
-  height: 620px;
+.componentContainer {
+  margin-top: 30px;
+}
+
+.artGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.artGridItem {
+  padding: 20px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.artGridItemText {
+  margin-bottom: 40px;
+  font-family: Righteous, sans-serif;
+}
+
+.artGridItemImg {
   box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white;
   border-radius: 10px;
   height: 620px;
@@ -30,7 +38,13 @@ hr {
   margin-bottom: 50px;
 }
 
-.FavArt img:hover {
+.artGridItemImg:hover {
   transform: scale(1.04);
   box-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white;
+}
+
+.header {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
 }

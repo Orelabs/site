@@ -8,7 +8,7 @@
   max-width: 18rem;
 
   transition: 0.3s linear;
-  box-shadow: 0 0 20px 0.25px #00ffff;
+  box-shadow: 0 0 20px 0.25px #a4ecee;
 }
 
 .thirdPartyCard:hover {
@@ -18,10 +18,10 @@
 
 @keyframes thirdPartyCardGlow {
   from {
-    box-shadow: 0 0 20px 1px #00ffff;
+    box-shadow: 0 0 20px 1px #6fd1b8;
   }
   to {
-    box-shadow: 0 0 20px 1px #04b5b4;
+    box-shadow: 0 0 20px 1px #a4ecee;
   }
 }
 
@@ -30,10 +30,6 @@
   cursor: pointer;
   border: solid 1px white;
   transition: 0.2s linear;
-}
-
-.thirdPartyCardImg:hover {
-  border-radius: 35%;
 }
 
 .thirdPartyCardDescription {

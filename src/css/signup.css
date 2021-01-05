@@ -31,8 +31,12 @@
   font-size: 17px;
 }
 
-.passwordRequirements {
+.requirements {
   font-size: 13.5px;
   color: lightgrey;
   margin-bottom: 50px;
+}
+
+.recaptcha {
+  display: inline-block !important;
 }

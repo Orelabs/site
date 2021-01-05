@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu");
 
 .nav-link {
   margin: 0 10px 0 10px;
@@ -9,10 +10,48 @@
   font-family: Poppins, sans-serif !important;
 }
 
-.mascotsDropdown {
+.navlink,
+.navbar-brand {
+  user-select: none;
+}
+
+.dropdown {
+  margin-right: 10px;
+}
+
+.dropdown-header {
+  user-select: none;
+}
+
+.dropdown-item {
+  user-select: none;
+}
+
+.mainDropdownMenu {
+  left: 0 !important;
+  right: auto !important;
+}
+
+.mainDropdownToggle {
+  font-size: 26px;
+  margin: 0 12px 0 12px;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+
+.mainDropdownToggle:hover {
+  transform: scale(1.1);
+}
+
+.dropdown-toggle::after,
+.dropdown-toggle::before {
+  display: none !important;
+}
+
+.secondaryDropdown {
   display: block;
   width: 100%;
-  padding: 0.25rem 1.5rem;
+  padding: 0.25rem 6px;
   clear: both;
   font-weight: 400;
   color: #212529;
@@ -22,13 +61,17 @@
   border: 0;
 }
 
-.mascotImg {
-  height: 45px;
-  width: 45px;
+.oreoImg {
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   margin-right: 7px;
 }
 
 .dropdown-item svg {
   margin-right: 5px;
+}
+
+.bug-dropdown:not(.not-bug-dropdown) {
+  font-family: Ubuntu, sans-serif;
 }

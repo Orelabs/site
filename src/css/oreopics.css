@@ -17,16 +17,16 @@
   height: inherit;
   width: inherit;
 
-  border-radius: 50%;
+  border-radius: 25%;
   border: 1px solid white;
-  transition: 0.28s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
 
   object-fit: cover;
 }
 
 .oreopic:hover {
-  border-radius: 0;
+  transform: scale(1.18);
 }
 
 .oreopicsInputContainer {
@@ -37,9 +37,4 @@
 .oreoInputContainer {
   width: 50%;
   margin-left: 25%;
-}
-
-button svg {
-  margin-right: 8px;
-  font-size: 20px;
 }
